@@ -1,0 +1,41 @@
+# Cloudflare Worker 配置文件
+
+name = "wechat-customer-service"
+main = "index.js"
+compatibility_date = "2024-09-23"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+name = "wechat-customer-service"
+# 微信企业号配置
+WECHAT_CORP_ID="wwfbff1ef42eec28df"
+WECHAT_KF_SECRET="D1GciNt1U"
+WECHAT_KF_TOKEN="Qqtar6ynyF7sPl5jzIqRzCs7Dy4XqnChJKo7e6XupG5"
+WECHAT_KF_ENCODING_AES_KEY="11"
+
+# 加密服务配置（由于 CF Worker CRYPTO 兼容性问题，需要单独部署）
+CRYPTO_SERVICE_URL="1111"
+
+# OpenAI API 配置
+OPENAI_API_KEY="sk-fG1o6hBtwTXKoNSDnqSTPBJR6gke3CKJkm5o5QredVgRklJw"
+OPENAI_BASE_URL="https://zhao.zeabur.app/v1"
+OPENAI_MODEL="gemini-2.5-pro"
+OPENAI_TIMEOUT=30000
+# OPENAI_ORGANIZATION=org-your-org-id
+# OPENAI_PROJECT=proj-your-project-id
+
+# 系统提示词配置
+SYSTEM_PROMPT="your are helpful assistant, reply in chinese, and reply in plain text format, text length should be less than 10240 characters" 
+
+
+# KV存储配置（用于持久化对话历史）
+[[kv_namespaces]]
+binding = "CONVERSATIONS"
+id = "951211e3fdf04543a8515cbcc6907998"
+preview_id = ""
+
+# KV存储配置（用于消息处理状态跟踪）
+[[kv_namespaces]]
+binding = "MESSAGE_TRACKER"
+id = "ddb1a665d45f4fcfa8ccbed961627828"
+preview_id = ""
